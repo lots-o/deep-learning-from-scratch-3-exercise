@@ -1,9 +1,8 @@
 """
 제 1 고지 : 미분 자동 계산 
-    step 9 : 함수를 더 편리하게 
-        - 1. 파이썬 함수로 이용하기 
-        - 2. y.grad = 1.0 생략 -> backward 간소화 
-        - 3. np.ndarray 만 취급하기 ( 주의 해야 할것은 0차원 ndarray 인스턴스를 사용하여 계산하면 결과타입이 np.float32,64 가 되는 경우가 나온다)
+    step 10 : 테스트
+        - unittest 활용 
+        
         
 
 """
@@ -81,7 +80,7 @@ class Function:
 
 class Square(Function):
     """
-    y= x ** 2
+    y= x ^ 2
     """
 
     def forward(self, x: np.ndarray) -> np.ndarray:
@@ -124,7 +123,7 @@ class SquareTest(unittest.TestCase):
 
 class Exp(Function):
     """
-    y=e**x
+    y=e ^ x
     """
 
     def forward(self, x: np.ndarray) -> np.ndarray:

@@ -5,7 +5,9 @@
         - 즉, 변수별 미분을 계산하는 역전파를 구현할수 있도록 한다 
 """
 from turtle import forward
+import torch
 import numpy as np
+import torch.nn as nn
 
 
 class Variable:
@@ -33,7 +35,7 @@ class Function:
 
 class Square(Function):
     """
-    y= x ** 2
+    y= x ^ 2
     """
 
     def forward(self, x: np.ndarray) -> np.ndarray:
@@ -42,13 +44,32 @@ class Square(Function):
 
 class Exp(Function):
     """
-    y=e**x
+    y=e ^ x
     """
 
     def forward(self, x: np.ndarray) -> np.ndarray:
         return np.exp(x)
 
 
+class Sigmoid(Function):
+    """
+    y = 1 / (1 + e ^(-x))
+    """
+
+    def forward(self, x: np.ndarray) -> np.ndarray:
+        return 1 / (1 + np.exp(-x))
+
+
+class Tanh(Function):
+    """
+    y= ( e^x - e^{-x} ) / ( e^x + e^{-x} )
+    """
+
+    def forward(self, x: np.ndarray) -> np.ndarray:
+        return (np.exp(x) - np.exp(-x)) / (np.exp(x) + np.exp(-x))
+
+
+# Dezero
 A = Square()
 B = Exp()
 C = Square()
@@ -59,3 +80,20 @@ b = B(a)
 c = C(b)
 
 print(c.data)
+
+# Dezero ~ Pytorch
+## Dezero
+x = Variable(np.array(1))
+A = Tanh()
+B = Sigmoid()
+a = A(x)
+b = B(a)
+print(b.data)
+
+## Pytorch
+x = torch.Tensor([1])
+A = nn.Tanh()
+B = nn.Sigmoid()
+a = A(x)
+b = B(a)
+print(b.data)

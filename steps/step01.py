@@ -5,6 +5,7 @@
     - 상자에는 데이터가 들어간다(대입 혹은 할당)
     - 상자 속을 들여다보면 데이터를 알 수 있다.(참조)
 """
+import torch
 import numpy as np
 
 
@@ -13,6 +14,12 @@ class Variable:
         self.data = data
 
 
+# Dezero ~ Pytorch
+## Dezero
 data = np.array(1.0)
 x = Variable(data)
+print(x.data)
+
+## Pytorch
+x = torch.Tensor([1.0])
 print(x.data)

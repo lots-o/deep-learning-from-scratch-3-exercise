@@ -39,7 +39,7 @@ class Function:
 
 class Square(Function):
     """
-    y= x ** 2
+    y= x ^ 2
     """
 
     def forward(self, x: np.ndarray) -> np.ndarray:
@@ -48,7 +48,7 @@ class Square(Function):
 
 class Exp(Function):
     """
-    y=e**x
+    y=e ^ x
     """
 
     def forward(self, x: np.ndarray) -> np.ndarray:

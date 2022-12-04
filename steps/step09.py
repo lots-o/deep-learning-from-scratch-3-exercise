@@ -7,7 +7,9 @@
         
 
 """
+import torch
 import numpy as np
+import torch.nn.functional as F
 
 
 def as_array(x):
@@ -79,7 +81,7 @@ class Function:
 
 class Square(Function):
     """
-    y= x ** 2
+    y= x ^ 2
     """
 
     def forward(self, x: np.ndarray) -> np.ndarray:
@@ -98,7 +100,7 @@ def square(x):
 
 class Exp(Function):
     """
-    y=e**x
+    y=e ^ x
     """
 
     def forward(self, x: np.ndarray) -> np.ndarray:
@@ -115,15 +117,71 @@ def exp(x):
     return f(x)
 
 
-x = Variable(np.array(0.5))
-A = Square()
-B = Exp()
-C = Square()
+class Sigmoid(Function):
+    """
+    y = 1 / (1 + e ^(-x))
+    """
 
-a = A(x)
-b = B(a)
-y = C(b)
+    def forward(self, x: np.ndarray) -> np.ndarray:
+        return 1 / (1 + np.exp(-x))
+
+    def backward(self, gy: np.ndarray) -> np.ndarray:
+        """
+        d/dx sigmoid(x) = sigmoid(x)(1-sigmoid(x))
+        """
+        x = self.input.data
+        sigmoid = lambda x: 1 / (1 + np.exp(-x))
+        return gy * sigmoid(x) * (1 - sigmoid(x))
+
+
+def sigmoid(x):
+    f = Sigmoid()
+    return f(x)
+
+
+class Tanh(Function):
+    """
+    y= ( e^x - e^{-x} ) / ( e^x + e^{-x} )
+    """
+
+    def forward(self, x: np.ndarray) -> np.ndarray:
+        return (np.exp(x) - np.exp(-x)) / (np.exp(x) + np.exp(-x))
+
+    def backward(self, gy: np.ndarray) -> np.ndarray:
+        """
+        d/dx tanh(x) = 1-tanh(x)^2
+        """
+        x = self.input.data
+        tanh = lambda x: (np.exp(x) - np.exp(-x)) / (np.exp(x) + np.exp(-x))
+        return gy * (1 - tanh(x) ** 2)
+
+
+def tanh(x):
+    f = Tanh()
+    return f(x)
+
+
+x = Variable(np.array(0.5))
+a = square(x)
+b = exp(a)
+y = square(b)
 
 ## 자동 역전파
 y.backward()
+print(x.grad)
+
+# Dezero ~ Pytorch
+## Dezero
+x = Variable(np.array(1.0))
+a = tanh(x)
+b = sigmoid(a)
+
+b.backward()
+print(x.grad)
+
+## Pytorch
+x = torch.tensor([1.0], requires_grad=True)
+a = F.tanh(x)
+b = F.sigmoid(a)
+b.backward()  #  NOTE : step07 에서 Dezero Variable 클래스에서 해당 기능 구현
 print(x.grad)
