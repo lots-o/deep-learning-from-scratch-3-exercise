@@ -67,7 +67,7 @@ class Variable:
     def cleargrad(self):
         self.grad = None
 
-    def backward(self, retain_grad=False):
+    def backward(self, retain_grad=False, create_graph=False):
         if self.grad is None:
             self.grad = Variable(np.ones_like(self.data))
 
@@ -84,8 +84,10 @@ class Variable:
 
         while funcs:
             f = funcs.pop()
-            gys = [output().grad for output in f.outputs]  # output is weakref
-            gxs = f.backward(*gys)
+            gys = [output().grad for output in f.outputs]
+
+            with using_config("enable_backprop", create_graph):
+                gxs = f.backward(*gys)
             if not isinstance(gxs, tuple):
                 gxs = (gxs,)
 
@@ -100,7 +102,7 @@ class Variable:
 
             if not retain_grad:
                 for y in f.outputs:
-                    y().grad = None  # y is weakref
+                    y().grad = None
 
 
 def as_variable(obj):

@@ -14713,7 +14713,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <h3 id="32.4-init.py-%EB%B3%80%EA%B2%BD">32.4 <strong>init</strong>.py &#48320;&#44221;<a class="anchor-link" href="#32.4-init.py-%EB%B3%80%EA%B2%BD">&#182;</a></h3><p>지금까지의 수정 내용을 바탕으로 <code>dezero/core.py</code> 에 반영한다. 이제는 <code>dezero/core_simple.py</code> 대신 <code>dezero/core.py</code>를 사용할 것이므로 <code>dezero/__init__.py</code> 를 수정한다.</p>
 <div class="highlight"><pre><span></span><span class="c1"># =============================================================================</span>
 <span class="c1"># step23.py부터 step32.py까지는 simple_core를 이용</span>
-<span class="n">is_simple_core</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">is_simple_core</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="c1"># step33 부터는  dezero/core.py 로 대체한다.</span>
 
 <span class="c1"># =============================================================================</span>
@@ -14731,11 +14731,9 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <span class="k">else</span><span class="p">:</span>
     <span class="c1"># step33 부터 dezero/core.py 정의</span>
     <span class="kn">from</span> <span class="nn">dezero.core</span> <span class="kn">import</span> <span class="n">Variable</span>
-    <span class="kn">from</span> <span class="nn">dezero.core</span> <span class="kn">import</span> <span class="n">Parameter</span>
     <span class="kn">from</span> <span class="nn">dezero.core</span> <span class="kn">import</span> <span class="n">Function</span>
     <span class="kn">from</span> <span class="nn">dezero.core</span> <span class="kn">import</span> <span class="n">using_config</span>
     <span class="kn">from</span> <span class="nn">dezero.core</span> <span class="kn">import</span> <span class="n">no_grad</span>
-    <span class="kn">from</span> <span class="nn">dezero.core</span> <span class="kn">import</span> <span class="n">test_mode</span>
     <span class="kn">from</span> <span class="nn">dezero.core</span> <span class="kn">import</span> <span class="n">as_array</span>
     <span class="kn">from</span> <span class="nn">dezero.core</span> <span class="kn">import</span> <span class="n">as_variable</span>
     <span class="kn">from</span> <span class="nn">dezero.core</span> <span class="kn">import</span> <span class="n">setup_variable</span>
