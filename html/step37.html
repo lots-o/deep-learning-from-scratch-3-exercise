@@ -14741,7 +14741,7 @@ $$
 \end{bmatrix}
 \end{aligned}
 $$</p>
-<p>그러므로, 최종 역전파의 결과는 다음 수식과 같이 <strong>야코비 행렬을 명시적으로 구하지 않고 미분을 계산한 다음 원소별 곱하여 구할 수 있다</strong>는 것이다. 
+<p>그러므로, <strong>원소별 연산(element-wise operation}에서의 최종 역전파의 결과</strong>는 다음 수식과 같이 <strong>야코비 행렬을 명시적으로 구하지 않고 미분을 원소별로 곱하여(원소별 연산) 구할 수 있다</strong>는 것이다. 
 $$
 \begin{aligned}
 \frac{\partial y}{\partial \mathbf{a}} \frac{\partial \mathbf{a}}{\partial \mathbf{x}} &amp;= 
