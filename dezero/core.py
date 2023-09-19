@@ -78,6 +78,9 @@ class Variable:
     def T(self):
         return dezero.functions.transpose(self)
 
+    def sum(self, axis=None, keepdims=False):
+        return dezero.functions.sum(self, axis, keepdims)
+
     def set_creator(self, func):
         self.creator = func
         self.generation = func.generation + 1
@@ -163,11 +166,16 @@ class Function:
 
 class Add(Function):
     def forward(self, x0, x1):
+        self.x0_shape, self.x1_shape = x0.shape, x1.shape
         y = x0 + x1
         return y
 
     def backward(self, gy):
-        return gy, gy
+        gx0, gx1 = gy, gy
+        if self.x0_shape != self.x1_shape:  # for broadcaset
+            gx0 = dezero.functions.sum_to(gx0, self.x0_shape)
+            gx1 = dezero.functions.sum_to(gx1, self.x1_shape)
+        return gx0, gx1
 
 
 def add(x0, x1):
