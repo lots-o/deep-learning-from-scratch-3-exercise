@@ -14708,7 +14708,7 @@ $$x \leftarrow a-\frac{f'(a)}{f''(a)}$$</p>
     <span class="n">y</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">create_graph</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     
     <span class="c1"># Calculate second order derivative</span>
-    <span class="n">gx</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span> <span class="n">grad</span> 
+    <span class="n">gx</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">grad</span> 
     <span class="n">x</span><span class="o">.</span><span class="n">cleargrad</span><span class="p">()</span>
     <span class="n">gx</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
     <span class="n">gx2</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">grad</span>
