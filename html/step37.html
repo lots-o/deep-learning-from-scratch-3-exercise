@@ -14706,7 +14706,7 @@ $$<p>$\mathbf{y,x}$ 모두 벡터이므로 미분은 위와 같이 행렬의 형
 </ol>
 <p><img src="../assets/%EA%B7%B8%EB%A6%BC%2037-3.png" alt="img"></p>
 <p>여기서 주목할 것은 <code>forward</code> 방법의 경우 중간 결과 $\frac{\partial \mathbf{b}}{\partial \mathbf{x}}$ 는 다시 <strong>행렬</strong>이 되지만, <code>reverse</code> 방법의 경우 중간 결과 $\frac{\partial y}{\partial \mathbf{a}}$ 는 <strong>행렬이 아닌 n개의 행벡터</strong>라는 것이다.<br>
-즉, <strong><code>reverse</code> 모드, 역전파쪽의 계산 효율이 더 좋음</strong>을 알 수 있다.</p>
+즉, <strong><code>reverse</code> 모드의 계산 효율이 더 좋음</strong>을 알 수 있다.</p>
 <p>또 한가지 주목할 것은, <strong>역전파 수행시 명시적으로 야코비 행렬을 구하여 행렬의 곱을 계산할 필요가 없다는 것</strong>이다.<br>
 예를들어, $\mathbf{a}=A(\mathbf{x})=sin(\mathbf{x})$ 가 <strong>원소별 연산(element-wise operation)</strong> 을 수행한 경우를 가정하면, 야코비 행렬은 다음과 같이 <code>diagonal matrix</code> 가 된다. 
 $$
@@ -14741,7 +14741,7 @@ $$
 \end{bmatrix}
 \end{aligned}
 $$</p>
-<p>그러므로, <strong>원소별 연산(element-wise operation}에서의 최종 역전파의 결과</strong>는 다음 수식과 같이 <strong>야코비 행렬을 명시적으로 구하지 않고 미분을 원소별로 곱하여(원소별 연산) 구할 수 있다</strong>는 것이다. 
+<p>그러므로, <strong>원소별 연산(element-wise operation)에서의 최종 역전파의 결과</strong>는 다음 수식과 같이 <strong>야코비 행렬을 명시적으로 구하지 않고 미분을 원소별로 곱하여(원소별 연산) 구할 수 있다</strong>는 것이다. 
 $$
 \begin{aligned}
 \frac{\partial y}{\partial \mathbf{a}} \frac{\partial \mathbf{a}}{\partial \mathbf{x}} &amp;= 
