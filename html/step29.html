@@ -14743,8 +14743,8 @@ f(x,y) = 100(y-x^2)^2 + (1-x)^2
 $$
 $$
 \begin{aligned}
- \nabla f &amp;= \begin{bmatrix} 400x^3-400xy+2x-2 \\ 200(y-x^2) \end{bmatrix} \\ 
-\nabla^2 f &amp;= \begin{bmatrix} 1200x^2 - 400y+2 &amp; -400x \\ -400x &amp; 200\end{bmatrix}
+ \nabla f &amp;= \begin{bmatrix} \frac{\partial y}{\partial x_0} \\  \frac{\partial y}{\partial x_1}  \end{bmatrix} = \begin{bmatrix} 400x^3-400xy+2x-2 \\ 200(y-x^2) \end{bmatrix} \\ 
+\nabla^2 f &amp;= \begin{bmatrix} \frac{\partial^2 y}{\partial x_0^2} &amp; \frac{\partial^2 y}{\partial x_0x_1} \\ \frac{\partial^2 y}{\partial x_1x_0} &amp; \frac{\partial^2 y}{\partial x_1^2}\end{bmatrix}=\begin{bmatrix} 1200x^2 - 400y+2 &amp; -400x \\ -400x &amp; 200\end{bmatrix}
 \end{aligned}
 $$</p>
 <p>구체적으로 뉴턴 메서드의 업데이트 과정은 다음과 같다.</p>
