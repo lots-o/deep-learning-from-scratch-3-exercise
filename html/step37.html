@@ -14681,7 +14681,7 @@ x + c  : variable([[11 22 33]
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="37.2-%5B%EB%B3%B4%EC%B6%A9%5D-%ED%85%90%EC%84%9C-%EC%82%AC%EC%9A%A9-%EC%8B%9C%EC%9D%98-%EC%97%AD%EC%A0%84%ED%8C%8C">37.2 [&#48372;&#52649;] &#53584;&#49436; &#49324;&#50857; &#49884;&#51032; &#50669;&#51204;&#54028;<a class="anchor-link" href="#37.2-%5B%EB%B3%B4%EC%B6%A9%5D-%ED%85%90%EC%84%9C-%EC%82%AC%EC%9A%A9-%EC%8B%9C%EC%9D%98-%EC%97%AD%EC%A0%84%ED%8C%8C">&#182;</a></h3><p>텐서를 사용했을 때의 역전파를 수식으로 살펴본다. (<code>numerator layout notation</code>을 따른다.)<br>
-$\mathbf{y}=F(\mathbf{x}) , \mathbf{x,y}\in{\R^n}$ 함수가 있다고 가정하면, $\frac{\partial \mathbf{y}}{\partial \mathbf{x}}$는 다음과 같다.</p>
+$\mathbf{y}=F(\mathbf{x}) , \mathbf{x,y}\in{\mathbb{R}^n}$ 함수가 있다고 가정하면, $\frac{\partial \mathbf{y}}{\partial \mathbf{x}}$는 다음과 같다.</p>
 $$
 \frac{\partial \mathbf{y}}{\partial \mathbf{x}}=
 \begin{bmatrix}
@@ -14693,7 +14693,7 @@ $$
 $$<p>$\mathbf{y,x}$ 모두 벡터이므로 미분은 위와 같이 행렬의 형태가 되고, 이를 <code>Jacobian matrix</code> 이라 한다. 
 참고로, $\frac{\partial y }{\partial \mathbf{x}} = \begin{bmatrix}\frac{\partial y}{\partial x_1} &amp;\frac{\partial y}{\partial x_2} &amp; \dots &amp; \frac{\partial y}{\partial x_n}  \end{bmatrix}$ 은 $1\times n$ Jacobian matrix 으로 볼 수 있다.</p>
 <p>다음으로 합성함수 $y=F(\mathbf{x})$ 가 $\mathbf{a}=A(\mathbf{x}),\mathbf{b}=B(\mathbf{a}),y=C(\mathbf{b})$ 라는 3개의 함수로 구성되어 있는 경우를 생각해보자.<br>
-이때, $\mathbf{x,a,b}\in\mathbb{R}^n$ 이고, 최종 출력 $y$는 <strong>스칼라</strong> 인 경우를 가정하면, $\frac{\partial y}{\partial \mathbf{x}}$ 는 다음과 같다.</p>
+이때, $\mathbf{x,a,b}\in \mathbb{R}^n$ 이고, 최종 출력 $y$는 <strong>스칼라</strong> 인 경우를 가정하면, $\frac{\partial y}{\partial \mathbf{x}}$ 는 다음과 같다.</p>
 <p align='center'>
     <img src='../assets/%EC%8B%9D%2037.1.png' align='center' width='50%'>
 </p><p>이어서 [식37.1]의 <strong>행렬 곱을 계산하는 순서</strong>를 두가지 방법 <code>forward</code> , <code>reverse</code> 로 나눠서 살펴본다.</p>
