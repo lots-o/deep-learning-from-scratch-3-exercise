@@ -125,6 +125,9 @@ class Variable:
                 for y in f.outputs:
                     y().grad = None
 
+class Parameter(Variable):
+    pass
+
 
 def as_variable(obj):
     if isinstance(obj, Variable):
@@ -296,3 +299,6 @@ def setup_variable():
     Variable.__truediv__ = div
     Variable.__rtruediv__ = rdiv
     Variable.__pow__ = pow
+    
+    Variable.matmaul = dezero.functions.matmul
+    Variable.dot = dezero.functions.matmul
