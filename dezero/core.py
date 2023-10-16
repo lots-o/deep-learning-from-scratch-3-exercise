@@ -299,6 +299,7 @@ def setup_variable():
     Variable.__truediv__ = div
     Variable.__rtruediv__ = rdiv
     Variable.__pow__ = pow
+    Variable.__getitem__ = dezero.functions.get_item
     
     Variable.matmaul = dezero.functions.matmul
     Variable.dot = dezero.functions.matmul
