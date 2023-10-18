@@ -34,6 +34,7 @@ else:
     import dezero.layers
     import dezero.optimizers
     import dezero.datasets
+    import dezero.transforms
 
 setup_variable()
 __version__ = "0.0.13"
