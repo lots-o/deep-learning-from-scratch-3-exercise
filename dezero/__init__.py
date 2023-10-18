@@ -28,6 +28,8 @@ else:
     from dezero.core import Config
     from dezero.layers import Layer
     from dezero.models import Model
+    from dezero.datasets import Dataset
+    from dezero.dataloaders import DataLoader
 
     import dezero.functions
     import dezero.utils
@@ -35,6 +37,7 @@ else:
     import dezero.optimizers
     import dezero.datasets
     import dezero.transforms
+    import dezero.dataloaders
 
 setup_variable()
 __version__ = "0.0.13"
