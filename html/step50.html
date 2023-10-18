@@ -14679,7 +14679,6 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <span class="kn">import</span> <span class="nn">random</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
 
-
 <span class="k">class</span> <span class="nc">DataLoader</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span> <span class="c1"># Dataset</span>
@@ -14828,7 +14827,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">dezero</span>
-<span class="kn">from</span> <span class="nn">dezero</span> <span class="kn">import</span> <span class="n">optimizers</span>
+<span class="kn">from</span> <span class="nn">dezero</span> <span class="kn">import</span> <span class="n">optimizers</span><span class="p">,</span><span class="n">DataLoader</span>
 <span class="kn">import</span> <span class="nn">dezero.functions</span> <span class="k">as</span> <span class="nn">F</span>
 <span class="kn">from</span> <span class="nn">dezero.models</span> <span class="kn">import</span> <span class="n">MLP</span>
 
@@ -14844,8 +14843,8 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 <span class="c1"># 데이터 읽기 / 모델, 옵티마이저 생성</span>
 <span class="c1">######################################</span>
-<span class="n">train_set</span> <span class="o">=</span> <span class="n">Spiral</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">test_set</span> <span class="o">=</span> <span class="n">Spiral</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">train_set</span> <span class="o">=</span> <span class="n">dezero</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">Spiral</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">test_set</span> <span class="o">=</span> <span class="n">dezero</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">Spiral</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">train_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train_set</span><span class="p">,</span><span class="n">batch_size</span><span class="p">)</span>
 <span class="n">test_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">test_set</span><span class="p">,</span><span class="n">batch_size</span><span class="p">,</span><span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># 테스트 데이터는 평가용이므로 shuffle=False</span>
 <span class="c1">######################################</span>
@@ -14894,8 +14893,8 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
             <span class="n">sum_loss</span> <span class="o">+=</span> <span class="nb">float</span><span class="p">(</span><span class="n">loss</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
             <span class="n">sum_acc</span> <span class="o">+=</span><span class="nb">float</span><span class="p">(</span><span class="n">acc</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> 
             
-    <span class="n">avg_loss</span> <span class="o">=</span> <span class="n">sum_loss</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_set</span><span class="p">)</span>
-    <span class="n">avg_acc</span> <span class="o">=</span> <span class="n">sum_acc</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_set</span><span class="p">)</span>
+    <span class="n">avg_loss</span> <span class="o">=</span> <span class="n">sum_loss</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_set</span><span class="p">)</span>
+    <span class="n">avg_acc</span> <span class="o">=</span> <span class="n">sum_acc</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_set</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">epoch</span> <span class="o">%</span> <span class="n">log_interval</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;test loss </span><span class="si">%.2f</span><span class="s1">, acc </span><span class="si">%.2f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">avg_loss</span><span class="p">,</span><span class="n">avg_acc</span><span class="p">))</span>
 </pre></div>
