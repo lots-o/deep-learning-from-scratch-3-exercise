@@ -33,6 +33,7 @@ else:
     import dezero.utils
     import dezero.layers
     import dezero.optimizers
+    import dezero.datasets
 
 setup_variable()
 __version__ = "0.0.13"
